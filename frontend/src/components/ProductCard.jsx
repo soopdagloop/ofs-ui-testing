@@ -7,23 +7,6 @@ export default function ProductCard({ name, price, url }) {
   const { cart, setCart } = useContext(CartContext);
   const [qty, setQty] = useState(1);
   const [activeComponent, setActiveComponent] = useState(0);
-  let hasPrev = qty > 1;
-  let hasNext = qty < 50;
-
-  function handlePrevClick(){
-    if (hasPrev) {
-      setQty(qty - 1);
-    }
-    else {
-      setActiveComponent(0);
-    }
-  }
-
-  function handleNextClick(){
-    if (hasNext){
-      setQty(qty + 1);
-    }
-  }
   const buttonControls = [
     <form
       className="flex flex-col items-center justify-center gap-1"
@@ -32,14 +15,11 @@ export default function ProductCard({ name, price, url }) {
       <button
         type="submit"
         className="border-2 border-none px-2 py-1 bg-red-500 text-white text-sm rounded-lg border-blue-100 cursor-pointer hover:bg-red-600
-          transition delay-150 duration-300 ease-in-out hover:-translate-y-0.5 hover:scale-110"
+          transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
       >
         Add to Cart
       </button>
     </form>,
-    <div>
-      <button onClick={handlePrevClick}>-</button> {qty}<button onClick={handleNextClick}>+</button>
-    </div>
   ];
 
   function addToCart() {
@@ -57,6 +37,7 @@ export default function ProductCard({ name, price, url }) {
     } else {
       setCart([...cart, { name: name, qty: 1, price: price, url: url }]);
     }
+    setQty(1);
     setActiveComponent(1);
   }
 

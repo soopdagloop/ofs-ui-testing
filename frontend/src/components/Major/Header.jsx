@@ -1,11 +1,12 @@
 import logo from "../../assets/spartans.png";
 import Dropdown from "../Dropdown";
 import DropdownCart from "../DropdownCart";
+import SearchBar from "../SearchBar";
 import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
-    <div className="flex gap-10 p-1 shadow-sm bg-red-500 shadow-red-500/50 ">
+    <div className="flex gap-10 p-1 shadow-sm bg-red-500 fixed w-full">
       <Link to="/">
         <div className="flex items-center gap-5 hover:ring hover:ring-white rounded-sm">
           <img className="w-20" src={logo} alt="Spartan Logo" />
@@ -14,12 +15,7 @@ export default function Header() {
       </Link>
 
       <div className="grow-7 flex items-center">
-        <input
-          className="p-2 w-full bg-white rounded-sm"
-          id="searchBox"
-          type="text"
-          placeholder="Search"
-        />
+        <SearchBar />
       </div>
 
       <div className="grow flex items-center">
@@ -39,7 +35,11 @@ export default function Header() {
             />
           </li>
           <li>
-            <DropdownCart link={"/Checkout"} text="Cart" className="relative inline-block" />
+            <DropdownCart
+              link={"/Checkout"}
+              text="Cart"
+              className="relative inline-block"
+            />
           </li>
         </ul>
       </div>
